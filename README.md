@@ -46,7 +46,7 @@ docker run -d --net <producer name>  -v /data/<producer name>/producer:/<produce
 
 ```
 
-# The launched container must have access to the Internet, it is accessible by the public ip address and is accessible by the ports 8888 and 9876. It is necessary to provide a public key for registering the producer on the mainet network
+### The launched container must have access to the Internet, it is accessible by the public ip address and is accessible by the ports 8888 and 9876. It is necessary to provide a public key for registering the producer on the mainet network
 
 
 # Setting up Configurations
