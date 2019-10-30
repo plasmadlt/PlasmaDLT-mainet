@@ -6,23 +6,30 @@
 - Accessible at a minimum read/write speed of 100 MB/s
 - 4 cores of CPU and 8 gigabytes of memory (RAM)
 
+## Networks name
+Testnet - Friedman
+Mainet - Liberty (mainet)
+Public Explorer - https://plasmadlt.com/
+Official wallet - https://plasmapay.com/
+Github - https://github.com/plasmadlt
+
 ## Run mainet node
-* Create dirs for producer node data
+Create dirs for producer node data
 
 ```
 mkdir /data
 mkdir /data/<producer name>
 mkdir /data/<produer name>/producer/conf
 ```
-* Get the docker image
+Get the docker image
 ```
 docker pull plasmachain/mainet:latest
 ```
-* Get the docker image
+Get the docker image
 ```
 docker pull plasmachain/mainet:latest
 ```
-* Edit config
+Edit config
 ```
 producer-name = <producer name>
 p2p-peer-address = <peer address (see https://plasmadlt.com)>
@@ -51,12 +58,14 @@ docker run -d --net <producer name>  -v /data/<producer name>/producer:/<produce
 
 ## Setting up Configurations
 
-- Get file  config.ini mainet
+Get file  config.ini mainet
 ```
 cd config.ini
 ```
-* Create account
-- You need to get an official account testnet or mainet on https://app.plasmapay.com/id/profile/developers
+Create account
+- If you run Testnet Node you need to create an official testnet account in official wallet PlasmaPay settings: https://app.plasmapay.com/id/profile/developers
+- If you run Mainet Node, you need to activate the main account in official wallet PlasmaPay on the dashboard: https://app.plasmapay.com/dashboard and decrypt your private keys (key icon on the wallet).
+**Attention:** you can create only one account in mainet and the account's name will be your node's name.
 - Get P2P endpoint  http://plasmadlt.com/monitor
 
 ## Get and edit the configuration file accordingly config.ini :
@@ -74,24 +83,24 @@ cd config.ini
 - ion :: net_api_plugin
 - optional (ion :: history_plugin, ion :: history_api_plugin)
 
-
-* After the node has played all the blocks of blockchain and created its own replica, the following commands can be executed as a command line utility as a test
+After the node has played all the blocks of blockchain and created its own replica, the following commands can be executed as a command line utility as a test
 ```
 docker exec -i <network>-bios-node sol get table plasma.token EURP stat
 docker exec -i <network>-bios-node sol get account plasma.token
 docker exec -i <network>-bios-node sol get abi plasma.token
 ```
 
-- Check if you can access you node using link http://you_server:your_http_port/v1/chain/get_info
--  If you would like to run a Block Producer  node you need register your node at https://plasmadlt.com/#register or write on support
+Check if you can access you node using link http://you_server:your_http_port/v1/chain/get_info
+
+If you would like to run a Block Producer node and register your node at public Plasma blockchain explorer https://plasmadlt.com/ write to support chat at web or to our email message: your account name, your public key, your website address.
 
 ## Deploy contract in Mainet using active key
-*  Choice producer from the network testnet or mainet from http://plasmadlt.com/monitor
+Choice producer from the network testnet or mainet from http://plasmadlt.com/monitor
 ```
 docker exec -i <network> sol --url http://bnpparibas.friedman.plasmadlt.com --wallet-url http://127.0.0.1:9999 set contract accountname /host-share/helllloworld
 ```
 
-* Test deployed contract
+Test deployed contract
 
 ```
 docker exec -i <network> sol --url http://swisubs.friedman.plasmadlt.com --wallet-url http://127.0.0.1:9999 push action accountname <action name>  '{"user": "accountname"}' -p accountname@active
@@ -100,3 +109,5 @@ docker exec -i <network> sol --url http://swisubs.friedman.plasmadlt.com --walle
 ```
 docker exec -i <network> ol --url http://swisubs.friedman.plasmadlt.com --wallet-url http://127.0.0.1:9999 push action accountname <action name>  '{"user": "accountname"}' -p accountname@active
 ```
+
+## You can also run a node using our docker image on [DigitalOcean Marketplace](url:https://marketplace.digitalocean.com)
