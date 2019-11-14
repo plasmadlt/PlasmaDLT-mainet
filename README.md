@@ -1,10 +1,10 @@
 # PlasmaDLT Mainet Set-up Guide
 
 ## Minimum System Requirements
-- The hardware must meet certain requirements to run a full node.
-- 500 GB of free disk space
-- Accessible at a minimum read/write speed of 100 MB/s
-- 4 cores of CPU and 8 gigabytes of memory (RAM)
+* The hardware must meet certain requirements to run a full node.
+* 500 GB of free disk space
+* Accessible at a minimum read/write speed of 100 MB/s
+* 4 cores of CPU and 8 gigabytes of memory (RAM)
 
 ## Networks name
 Testnet - Friedman
@@ -19,7 +19,7 @@ Create dirs for producer node data
 ```
 mkdir /data
 mkdir /data/<producer name>
-mkdir /data/<produer name>/producer/conf
+mkdir /data/<producer name>/producer/conf
 ```
 Get the docker image
 ```
@@ -27,32 +27,31 @@ docker pull plasmachain/mainet:latest
 ```
 ## Setting up Configurations
 
-* Create account
-- If you run Testnet Node you need to create an official testnet account in official wallet PlasmaPay settings: https://app.plasmapay.com/id/profile/developers
-- If you run Mainet Node, you need to activate the main account in official wallet PlasmaPay on the dashboard: https://app.plasmapay.com/dashboard and decrypt your private keys (key icon on the wallet).
-**Attention:** you can create only one account in mainet and the account's name will be your node's name.
-- Get P2P endpoint  http://plasmadlt.com/monitor
+Create account
+* If you run Testnet Node you need to create an official testnet account in official wallet PlasmaPay settings: https://app.plasmapay.com/id/profile/developers
+* If you run Mainet Node, you need to activate the main account in official wallet PlasmaPay on the dashboard: https://app.plasmapay.com/dashboard and decrypt your private keys (key icon on the wallet).
+**Attention:** you can create only one account in PlasmaPay and the account's name will be your node's name.
+* Get P2P endpoint  http://plasmadlt.com/monitor
 
 ## Get and edit the configuration file accordingly config.ini :
-- http-server-address = 0.0.0.0:8888  register the port on which the host will listen to http requests
-- p2p-listen-endpoint = 0.0.0.0:9876  set the port on which the host will listen for p2p incoming connections. Also, the value of this parameter should be given to the network administrator, so that he would include this host in the list of p2p-peer-address addresses of all producer nodes of the network.
-- p2p-peer-address fill in the list of p2p network producer nodes. It must be obtained from the network testnet or mainet from http://plasmadlt.com/monitor.
-- agent-name  set the name of the node.
-- producer-name set the node name equal to the name of the account that the node owner received in step 1
-- signature-provider - set the key values ​​that the node owner received from  https://app.plasmapay.com/id/profile/developers
+* http-server-address = 0.0.0.0:8888  register the port on which the host will listen to http requests
+* p2p-listen-endpoint = 0.0.0.0:9876  set the port on which the host will listen for p2p incoming connections. Also, the value of this parameter should be given to the network administrator, so that he would include this host in the list of p2p-peer-address addresses of all producer nodes of the network.
+* p2p-peer-address fill in the list of p2p network producer nodes. It must be obtained from the network testnet or mainet from http://plasmadlt.com/monitor.
+* agent-name  set the name of the node.
+* producer-name set the node name equal to the name of the account that the node owner received in step 1
+* signature-provider - set the key values that the node owner received from  https://app.plasmapay.com/id/profile/developers
 
 
 ## Plugin - fill in the plugins section:
-- ion :: chain_api_plugin,
-- ion :: http_plugin,
-- ion :: net_api_plugin
-- optional (ion :: history_plugin, ion :: history_api_plugin)
-
+* ion :: chain_api_plugin,
+* ion :: http_plugin,
+* ion :: net_api_plugin
+* optional (ion :: history_plugin, ion :: history_api_plugin)
 
 
 If you would like to run a Block Producer node and register your node at public Plasma blockchain explorer https://plasmadlt.com/ write to support chat at web or to our email message: your account name, your public key, your website address.
 
-* Edit config
+Edit config
 ```
 producer-name = <producer name>
 p2p-peer-address = <peer address (see https://plasmadlt.com)>
@@ -81,7 +80,7 @@ services:
       --config <producer name>/conf/config.ini
       --verbose-http-errors
       --max-transaction-time=100
-      --data-dir <producer name>/blockchain
+      --data-dir /<producer name>/blockchain
     volumes:
       - ./data/<producer name>/producer:/<producer name>
     restart: always
